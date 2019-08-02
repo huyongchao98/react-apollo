@@ -62,5 +62,5 @@ export function withApollo<TProps, TResult = any>(
   }
 
   // Make sure we preserve any custom statics on the original component.
-  return hoistNonReactStatics(WithApollo, WrappedComponent, {});
+  return hoistNonReactStatics(WithApollo, WrappedComponent as React.ComponentType<Pick<TProps, Exclude<keyof TProps, "client">>>, {}) as React.ComponentClass<Pick<TProps, Exclude<keyof TProps, "client">>, any>;
 }

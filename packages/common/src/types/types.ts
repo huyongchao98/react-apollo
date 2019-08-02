@@ -120,9 +120,10 @@ export interface MutationFunctionOptions<
   fetchPolicy?: WatchQueryFetchPolicy;
 }
 
-export interface MutationResult<TData = any> {
+export interface MutationResult<TData = any,TContext = any> {
   data?: TData;
   error?: ApolloError;
+  context?:TContext;
   loading: boolean;
   called: boolean;
   client?: ApolloClient<object>;

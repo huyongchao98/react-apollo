@@ -97,7 +97,10 @@ export function withMutation<
                 childProps = operationOptions.props(newResult) as any;
               }
 
-              return <WrappedComponent {...props} {...childProps} />;
+              return <WrappedComponent
+                {...props as TProps}
+                {...childProps as TChildProps}
+              />;
             }}
           </Mutation>
         );
@@ -105,6 +108,6 @@ export function withMutation<
     }
 
     // Make sure we preserve any custom statics on the original component.
-    return hoistNonReactStatics(GraphQL, WrappedComponent, {});
+    return hoistNonReactStatics(GraphQL, WrappedComponent as React.ComponentType<TProps>, {}) as React.ComponentClass<TProps>;
   };
 }

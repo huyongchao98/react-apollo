@@ -12,6 +12,18 @@ import {
 import { MutationOptions, MutationTuple } from '../types';
 import { OperationData } from './OperationData';
 
+
+interface Context <
+  TData = any,
+  TVariables = OperationVariables
+> {
+  mutationId:number,
+  options:MutationFunctionOptions<
+      TData,
+      TVariables
+    >
+}
+
 export class MutationData<
   TData = any,
   TVariables = OperationVariables
@@ -60,8 +72,11 @@ export class MutationData<
       TVariables
     > = {} as MutationFunctionOptions<TData, TVariables>
   ) => {
-    this.onMutationStart();
+    
     const mutationId = this.generateNewMutationId();
+
+    const theContext= {mutationId,options:mutationFunctionOptions}
+    this.onMutationStart(theContext);
 
     return this.mutate(mutationFunctionOptions)
       .then((response: ExecutionResult<TData>) => {
@@ -109,10 +124,11 @@ export class MutationData<
     });
   }
 
-  private onMutationStart() {
+  private onMutationStart(context:Context) {
     if (!this.result.loading && !this.getOptions().ignoreResults) {
       this.updateResult({
         loading: true,
+        context,
         error: undefined,
         data: undefined,
         called: true

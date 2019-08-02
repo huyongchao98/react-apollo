@@ -140,6 +140,6 @@ export function withSubscription<
     }
 
     // Make sure we preserve any custom statics on the original component.
-    return hoistNonReactStatics(GraphQL, WrappedComponent, {});
+    return hoistNonReactStatics(GraphQL, WrappedComponent as React.ComponentType<TProps>, {}) as React.ComponentClass<TProps>;;
   };
 }
