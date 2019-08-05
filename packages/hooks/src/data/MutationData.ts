@@ -74,7 +74,6 @@ export class MutationData<
   ) => {
     
     const mutationId = this.generateNewMutationId();
-    console.log("121212tetsss");
     const theContext= {mutationId,options:mutationFunctionOptions}
     this.onMutationStart(theContext);
 
