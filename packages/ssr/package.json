@@ -40,8 +40,8 @@
     "react-dom": "^16.8.0"
   },
   "dependencies": {
-    "@apollo/react-common": "file:../common",
-    "@apollo/react-hooks": "file:../hooks",
+    "@apollo/react-common": "^0.1.0",
+    "@apollo/react-hooks": "^0.1.1-alpha.0",
     "tslib": "^1.10.0"
   },
   "files": [
@@ -55,5 +55,6 @@
     "rollup": "1.17.0",
     "tsc-watch": "2.2.1",
     "typescript": "3.5.3"
-  }
+  },
+  "gitHead": "d722086b90b51d3a25388fd17a843bf57b22f3de"
 }
