@@ -23,8 +23,8 @@ export const ApolloProvider: React.FC<ApolloProviderProps<any>> = ({
 
         invariant(
           context.client,
-          'ApolloProvider was not passed a client instance. Make ' +
-            'sure you pass in your client via the "client" prop.'
+          'ApolloProvider was not passed a client instance. Make' +
+            ' sure you pass in your client via the "client" prop.'
         );
 
         return (
