@@ -67,6 +67,9 @@
     "typescript": "3.5.2",
     "zen-observable-ts": "0.8.19"
   },
+  "resolutions": {
+    "nan": "^2.14.0"
+  },
   "bundlesize": [
     {
       "name": "react-apollo",

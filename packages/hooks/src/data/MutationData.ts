@@ -1,5 +1,5 @@
 import { ApolloError } from 'apollo-client';
-import { isEqual } from 'apollo-utilities';
+import { equal as isEqual } from '@wry/equality';
 import {
   ApolloContextValue,
   DocumentType,
@@ -11,6 +11,18 @@ import {
 
 import { MutationOptions, MutationTuple } from '../types';
 import { OperationData } from './OperationData';
+
+
+interface Context <
+  TData = any,
+  TVariables = OperationVariables
+> {
+  mutationId:number,
+  options:MutationFunctionOptions<
+      TData,
+      TVariables
+    >
+}
 
 export class MutationData<
   TData = any,
@@ -40,11 +52,9 @@ export class MutationData<
   }
 
   public execute(result: MutationResult<TData>) {
+    this.isMounted = true;
     this.verifyDocumentType(this.getOptions().mutation, DocumentType.Mutation);
-    const runMutation = (
-      options?: MutationFunctionOptions<TData, TVariables>
-    ) => this.runMutation(options);
-    return [runMutation, result] as MutationTuple<TData, TVariables>;
+    return [this.runMutation, result] as MutationTuple<TData, TVariables>;
   }
 
   public afterExecute() {
@@ -52,18 +62,21 @@ export class MutationData<
     return this.unmount.bind(this);
   }
 
-  protected cleanup() {
+  public cleanup() {
     // No cleanup required.
   }
 
-  private runMutation(
+  private runMutation = (
     mutationFunctionOptions: MutationFunctionOptions<
       TData,
       TVariables
     > = {} as MutationFunctionOptions<TData, TVariables>
-  ) {
-    this.onMutationStart();
+  ) => {
+    
     const mutationId = this.generateNewMutationId();
+
+    const theContext= {mutationId,options:mutationFunctionOptions}
+    this.onMutationStart(theContext);
 
     return this.mutate(mutationFunctionOptions)
       .then((response: ExecutionResult<TData>) => {
@@ -74,7 +87,7 @@ export class MutationData<
         this.onMutationError(error, mutationId);
         if (!this.getOptions().onError) throw error;
       });
-  }
+  };
 
   private mutate(
     mutationFunctionOptions: MutationFunctionOptions<TData, TVariables>
@@ -111,10 +124,11 @@ export class MutationData<
     });
   }
 
-  private onMutationStart() {
+  private onMutationStart(context:Context) {
     if (!this.result.loading && !this.getOptions().ignoreResults) {
       this.updateResult({
         loading: true,
+        context,
         error: undefined,
         data: undefined,
         called: true

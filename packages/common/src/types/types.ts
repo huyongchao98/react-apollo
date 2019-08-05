@@ -79,6 +79,7 @@ export interface QueryResult<TData = any, TVariables = OperationVariables>
   error?: ApolloError;
   loading: boolean;
   networkStatus: NetworkStatus;
+  called: boolean;
 }
 
 /* Mutation types */
@@ -92,7 +93,7 @@ export interface BaseMutationOptions<
   TVariables = OperationVariables
 > {
   variables?: TVariables;
-  optimisticResponse?: TData;
+  optimisticResponse?: TData | ((vars: TVariables) => TData);
   refetchQueries?: Array<string | PureQueryOptions> | RefetchQueriesFunction;
   awaitRefetchQueries?: boolean;
   errorPolicy?: ErrorPolicy;
@@ -111,7 +112,7 @@ export interface MutationFunctionOptions<
   TVariables = OperationVariables
 > {
   variables?: TVariables;
-  optimisticResponse?: TData;
+  optimisticResponse?: TData | ((vars: TVariables | {}) => TData);
   refetchQueries?: Array<string | PureQueryOptions> | RefetchQueriesFunction;
   awaitRefetchQueries?: boolean;
   update?: MutationUpdaterFn<TData>;
@@ -119,9 +120,10 @@ export interface MutationFunctionOptions<
   fetchPolicy?: WatchQueryFetchPolicy;
 }
 
-export interface MutationResult<TData = any> {
+export interface MutationResult<TData = any,TContext = any> {
   data?: TData;
   error?: ApolloError;
+  context?:TContext;
   loading: boolean;
   called: boolean;
   client?: ApolloClient<object>;
