@@ -1,7 +1,7 @@
 {
   "name": "react-apollo",
   "description": "React Apollo Hooks, Components, and HOC.",
-  "version": "3.0.0",
+  "version": "3.0.1-alpha.0",
   "author": "opensource@apollographql.com",
   "keywords": [
     "apollo",
@@ -40,10 +40,10 @@
   },
   "dependencies": {
     "@apollo/react-common": "^0.1.0",
-    "@apollo/react-components": "^0.1.0",
-    "@apollo/react-hoc": "^0.1.0",
-    "@apollo/react-hooks": "^0.1.0",
-    "@apollo/react-ssr": "^0.1.0"
+    "@apollo/react-components": "^0.1.1-alpha.0",
+    "@apollo/react-hoc": "^0.1.1-alpha.0",
+    "@apollo/react-hooks": "^0.1.1-alpha.0",
+    "@apollo/react-ssr": "^0.1.1-alpha.0"
   },
   "files": [
     "lib"
