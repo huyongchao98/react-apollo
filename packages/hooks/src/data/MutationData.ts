@@ -163,7 +163,7 @@ export class MutationData<
   }
 
   private onMutationError(error: ApolloError, mutationId: number) {
-    const { onError } = this.getOptions();
+    const { onError,...others } = this.getOptions();
 
     if (this.isMostRecentMutation(mutationId)) {
       const theContext= {mutationId,options:others}
