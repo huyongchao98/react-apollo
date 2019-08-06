@@ -166,9 +166,11 @@ export class MutationData<
     const { onError } = this.getOptions();
 
     if (this.isMostRecentMutation(mutationId)) {
+      const theContext= {mutationId,options:others}
       this.updateResult({
         loading: false,
         error,
+        context:theContext,
         data: undefined,
         called: true
       });
