@@ -177,8 +177,7 @@ export class MutationData<
     }
 
     if (onError) {
-      error.context = context;
-      onError(error);
+      onError(error,context);
     }
   }
 

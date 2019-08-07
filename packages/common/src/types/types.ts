@@ -102,7 +102,7 @@ export interface BaseMutationOptions<
   notifyOnNetworkStatusChange?: boolean;
   context?: Context;
   onCompleted?: (data: TData) => void;
-  onError?: (error: ApolloError) => void;
+  onError?: (error: ApolloError,context?:Object) => void;
   fetchPolicy?: WatchQueryFetchPolicy;
   ignoreResults?: boolean;
 }
