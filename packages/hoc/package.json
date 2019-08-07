@@ -1,7 +1,7 @@
 {
   "name": "@apollo/react-hoc",
   "description": "React Apollo `graphql` higher-order component.",
-  "version": "2.5.13",
+  "version": "2.5.14",
   "author": "opensource@apollographql.com",
   "keywords": [
     "apollo",
@@ -41,8 +41,8 @@
     "react": "^16.8.0"
   },
   "dependencies": {
-    "@apollo/react-common": "^2.5.9",
-    "@apollo/react-components": "^2.5.13",
+    "@apollo/react-common": "^2.5.10",
+    "@apollo/react-components": "^2.5.14",
     "ts-invariant": "^0.4.4",
     "tslib": "^1.10.0"
   },

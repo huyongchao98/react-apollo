@@ -1,7 +1,7 @@
 {
   "name": "@apollo/react-components",
   "description": "React Apollo Query, Mutation and Subscription components.",
-  "version": "2.5.13",
+  "version": "2.5.14",
   "author": "opensource@apollographql.com",
   "keywords": [
     "apollo",
@@ -45,8 +45,8 @@
     "react-dom": "^16.8.3"
   },
   "dependencies": {
-    "@apollo/react-common": "^2.5.9",
-    "@apollo/react-hooks": "^2.5.13",
+    "@apollo/react-common": "^2.5.10",
+    "@apollo/react-hooks": "^2.5.14",
     "hoist-non-react-statics": "^3.3.0",
     "prop-types": "^15.7.2",
     "ts-invariant": "^0.4.4",
