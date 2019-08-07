@@ -1,7 +1,7 @@
 {
   "name": "react-apollo",
   "description": "React Apollo Hooks, Components, and HOC.",
-  "version": "2.5.12",
+  "version": "2.5.13",
   "author": "opensource@apollographql.com",
   "keywords": [
     "apollo",
@@ -39,9 +39,9 @@
   },
   "dependencies": {
     "@apollo/react-common": "^2.5.9",
-    "@apollo/react-components": "^2.5.12",
-    "@apollo/react-hoc": "^2.5.12",
-    "@apollo/react-hooks": "^2.5.12"
+    "@apollo/react-components": "^2.5.13",
+    "@apollo/react-hoc": "^2.5.13",
+    "@apollo/react-hooks": "^2.5.13"
   },
   "files": [
     "lib"
