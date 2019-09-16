@@ -1,11 +1,7 @@
 {
   "name": "@apollo/react-components",
   "description": "React Apollo Query, Mutation and Subscription components.",
-<<<<<<< HEAD
-  "version": "0.1.1-alpha.1",
-=======
   "version": "3.1.1",
->>>>>>> apollographql/master
   "author": "opensource@apollographql.com",
   "keywords": [
     "apollo",
@@ -63,17 +59,10 @@
     "access": "public"
   },
   "devDependencies": {
-<<<<<<< HEAD
-    "@apollo/react-ssr": "^0.1.1-alpha.1",
-    "jest": "24.8.0",
-    "rollup": "1.17.0",
-    "tsc-watch": "2.2.1",
-=======
     "@apollo/react-ssr": "file:../ssr",
     "jest": "24.9.0",
     "rollup": "1.20.3",
     "tsc-watch": "3.0.1",
->>>>>>> apollographql/master
     "typescript": "3.5.3"
   },
   "gitHead": "d722086b90b51d3a25388fd17a843bf57b22f3de"
