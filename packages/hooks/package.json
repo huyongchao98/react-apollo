@@ -43,7 +43,7 @@
     "react-dom": "^16.8.0"
   },
   "dependencies": {
-    "@apollo/react-common": "^0.1.1-alpha.0",
+    "@apollo/react-common": "file:../common",
     "@wry/equality": "^0.1.9",
     "ts-invariant": "^0.4.4",
     "tslib": "^1.10.0"
@@ -60,5 +60,5 @@
     "tsc-watch": "3.0.1",
     "typescript": "3.5.3"
   },
-  "gitHead": "d722086b90b51d3a25388fd17a843bf57b22f3de"
+  "gitHead": "839d50f8ac86b2343c2e1dfd58871dc319434db2"
 }

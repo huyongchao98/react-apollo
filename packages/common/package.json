@@ -53,5 +53,6 @@
     "rollup": "1.20.3",
     "tsc-watch": "3.0.1",
     "typescript": "3.5.3"
-  }
+  },
+  "gitHead": "839d50f8ac86b2343c2e1dfd58871dc319434db2"
 }
