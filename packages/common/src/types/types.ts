@@ -143,7 +143,7 @@ export declare type MutationFunction<
   TVariables = OperationVariables
 > = (
   options?: MutationFunctionOptions<TData, TVariables>
-) => Promise<void | MutationFetchResult<TData>>;
+) => Promise<MutationFetchResult<TData>>;
 
 /* Subscription types */
 
@@ -162,6 +162,7 @@ export interface BaseSubscriptionOptions<
     | boolean
     | ((options: BaseSubscriptionOptions<TData, TVariables>) => boolean);
   client?: ApolloClient<object>;
+  skip?: boolean;
   onSubscriptionData?: (options: OnSubscriptionDataOptions<TData>) => any;
   onSubscriptionComplete?: () => void;
 }

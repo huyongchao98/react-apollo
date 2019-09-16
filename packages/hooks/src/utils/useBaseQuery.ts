@@ -1,8 +1,12 @@
 import { useContext, useEffect, useReducer, useRef } from 'react';
-import { getApolloContext, OperationVariables } from '@apollo/react-common';
+import {
+  getApolloContext,
+  OperationVariables,
+  QueryResult
+} from '@apollo/react-common';
 import { DocumentNode } from 'graphql';
 
-import { QueryHookOptions, QueryOptions } from '../types';
+import { QueryHookOptions, QueryOptions, QueryTuple } from '../types';
 import { QueryData } from '../data/QueryData';
 import { useDeepMemo } from './useDeepMemo';
 
@@ -29,17 +33,39 @@ export function useBaseQuery<TData = any, TVariables = OperationVariables>(
   queryData.setOptions(updatedOptions);
   queryData.context = context;
 
+  // `onError` and `onCompleted` callback functions will not always have a
+  // stable identity, so we'll exclude them from the memoization key to
+  // prevent `afterExecute` from being triggered un-necessarily.
   const memo = {
-    options: updatedOptions,
+    options: { ...updatedOptions, onError: undefined, onCompleted: undefined },
     context,
     tick
   };
+
   const result = useDeepMemo(
     () => (lazy ? queryData.executeLazy() : queryData.execute()),
     memo
   );
 
-  useEffect(() => queryData.afterExecute({ lazy }), [result]);
+  const queryResult = lazy
+    ? (result as QueryTuple<TData, TVariables>)[1]
+    : (result as QueryResult<TData, TVariables>);
+
+  useEffect(
+    () => queryData.afterExecute({ lazy }),
+    lazy
+      ? undefined
+      : [
+          queryResult.loading,
+          queryResult.networkStatus,
+          queryResult.error,
+          queryResult.data
+        ]
+  );
+
+  useEffect(() => {
+    return () => queryData.cleanup();
+  }, []);
 
   return result;
 }

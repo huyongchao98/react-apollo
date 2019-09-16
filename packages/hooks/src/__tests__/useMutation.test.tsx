@@ -2,12 +2,18 @@ import React, { useEffect } from 'react';
 import { DocumentNode } from 'graphql';
 import gql from 'graphql-tag';
 import { MockedProvider, mockSingleLink } from '@apollo/react-testing';
-import { render, cleanup } from '@testing-library/react';
+import { render, cleanup, wait } from '@testing-library/react';
 import { ApolloProvider, useMutation } from '@apollo/react-hooks';
 import { ApolloClient } from 'apollo-client';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 
 describe('useMutation Hook', () => {
+  interface Todo {
+    id: number;
+    description: string;
+    priority: string;
+  }
+
   const CREATE_TODO_MUTATION: DocumentNode = gql`
     mutation createTodo($description: String!) {
       createTodo(description: $description) {
@@ -186,6 +192,66 @@ describe('useMutation Hook', () => {
           <Component />
         </MockedProvider>
       );
+    });
+
+    it('should resolve mutate function promise with mutation results', done => {
+      const variables = {
+        description: 'Get milk!'
+      };
+
+      const mocks = [
+        {
+          request: {
+            query: CREATE_TODO_MUTATION,
+            variables
+          },
+          result: { data: CREATE_TODO_RESULT }
+        }
+      ];
+
+      const Component = () => {
+        const [createTodo] = useMutation<{ createTodo: Todo }>(
+          CREATE_TODO_MUTATION
+        );
+
+        async function doIt() {
+          const { data } = await createTodo({ variables });
+          expect(data).toEqual(CREATE_TODO_RESULT);
+          expect(data!.createTodo.description).toEqual(
+            CREATE_TODO_RESULT.createTodo.description
+          );
+          done();
+        }
+
+        useEffect(() => {
+          doIt();
+        }, []);
+
+        return null;
+      };
+
+      render(
+        <MockedProvider mocks={mocks}>
+          <Component />
+        </MockedProvider>
+      );
+    });
+
+    it('should return the current client instance in the result object', async () => {
+      const Component = () => {
+        const [, { client }] = useMutation(CREATE_TODO_MUTATION);
+        expect(client).toBeDefined();
+        expect(client instanceof ApolloClient).toBeTruthy();
+        return null;
+      };
+
+      render(
+        <MockedProvider>
+          <Component />
+        </MockedProvider>
+      );
+
+      await wait();
     });
   });
 

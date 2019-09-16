@@ -1,7 +1,11 @@
 {
   "name": "@apollo/react-hoc",
   "description": "React Apollo `graphql` higher-order component.",
+<<<<<<< HEAD
   "version": "0.1.1-alpha.1",
+=======
+  "version": "3.1.1",
+>>>>>>> apollographql/master
   "author": "opensource@apollographql.com",
   "keywords": [
     "apollo",
@@ -29,14 +33,15 @@
     "postbuild": "npx rollup -c ./config/rollup.config.js",
     "watch": "npx tsc-watch --onSuccess \"npm run postbuild\" -p ./config",
     "predeploy": "npm run build",
-    "deploy": "npm publish --tag beta",
+    "deploy": "npm publish",
     "test": "npx jest --config ../../config/jest.config.js --testPathPattern packages/hoc",
     "test:watch": "npx jest --config ../../config/jest.config.js --testPathPattern packages/hoc --watch",
     "test:cjs": "npm run build && npx jest --config ../../config/jest.cjs.config.js --testPathPattern packages/hoc",
     "test:umd": "npm run build && npx jest --config ../../config/jest.umd.config.js --testPathPattern packages/hoc"
   },
   "peerDependencies": {
-    "apollo-client": "^2.6.3",
+    "@types/react": "^16.8.0",
+    "apollo-client": "^2.6.4",
     "graphql": "^14.3.1",
     "react": "^16.8.0",
     "react-dom": "^16.8.0"
@@ -55,10 +60,17 @@
     "access": "public"
   },
   "devDependencies": {
+<<<<<<< HEAD
     "@apollo/react-ssr": "^0.1.1-alpha.1",
     "jest": "24.8.0",
     "rollup": "1.17.0",
     "tsc-watch": "2.2.1",
+=======
+    "@apollo/react-ssr": "file:../ssr",
+    "jest": "24.9.0",
+    "rollup": "1.20.3",
+    "tsc-watch": "3.0.1",
+>>>>>>> apollographql/master
     "typescript": "3.5.3"
   },
   "gitHead": "d722086b90b51d3a25388fd17a843bf57b22f3de"

@@ -1,7 +1,11 @@
 {
   "name": "react-apollo",
   "description": "React Apollo Hooks, Components, and HOC.",
+<<<<<<< HEAD
   "version": "3.0.1-alpha.1",
+=======
+  "version": "3.1.1",
+>>>>>>> apollographql/master
   "author": "opensource@apollographql.com",
   "keywords": [
     "apollo",
@@ -30,10 +34,11 @@
     "build": "npx tsc -p ./config",
     "postbuild": "npx rollup -c ./config/rollup.config.js",
     "predeploy": "npm run build",
-    "deploy": "npm publish --tag beta"
+    "deploy": "npm publish"
   },
   "peerDependencies": {
-    "apollo-client": "^2.6.3",
+    "@types/react": "^16.8.0",
+    "apollo-client": "^2.6.4",
     "graphql": "^14.3.1",
     "react": "^16.8.0",
     "react-dom": "^16.8.0"
@@ -52,7 +57,7 @@
     "access": "public"
   },
   "devDependencies": {
-    "rollup": "1.17.0",
+    "rollup": "1.20.3",
     "typescript": "3.5.3"
   },
   "gitHead": "d722086b90b51d3a25388fd17a843bf57b22f3de"

@@ -48,13 +48,17 @@ export {
   DataProps,
   MutateProps,
   ChildProps,
+  ChildDataProps,
+  ChildMutateProps,
   OptionProps,
-  OperationOption
+  OperationOption,
+  WithApolloClient
 } from '@apollo/react-hoc';
 
 // @apollo/react-hooks
 export {
   useQuery,
+  useLazyQuery,
   useMutation,
   useSubscription,
   useApolloClient,
@@ -75,5 +79,5 @@ export {
 export {
   getMarkupFromTree,
   getDataFromTree,
-  renderToStringWithData,
+  renderToStringWithData
 } from '@apollo/react-ssr';
