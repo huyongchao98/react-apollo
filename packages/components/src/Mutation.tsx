@@ -27,6 +27,7 @@ export namespace Mutation {
     children: PropTypes.func.isRequired,
     onCompleted: PropTypes.func,
     onError: PropTypes.func,
-    fetchPolicy: PropTypes.string
+    fetchPolicy: PropTypes.string,
+    returnResultAlways:PropTypes.bool,
   };
 }

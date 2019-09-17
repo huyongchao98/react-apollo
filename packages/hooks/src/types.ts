@@ -78,6 +78,7 @@ export interface MutationHookOptions<
   TVariables = OperationVariables
 > extends BaseMutationOptions<TData, TVariables> {
   mutation?: DocumentNode;
+  returnResultAlways?:boolean; 
 }
 
 export interface MutationOptions<TData = any, TVariables = OperationVariables>

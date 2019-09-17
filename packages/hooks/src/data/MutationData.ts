@@ -32,23 +32,27 @@ export class MutationData<
   private result: MutationResult<TData>;
   private previousResult?: MutationResult<TData>;
   private setResult: (result: MutationResult<TData>) => any;
+  private returnResultAlways: boolean;
 
   constructor({
     options,
     context,
     result,
-    setResult
+    setResult,
+    returnResultAlways
   }: {
     options: MutationOptions<TData, TVariables>;
     context: ApolloContextValue;
     result: MutationResult<TData>;
     setResult: (result: MutationResult<TData>) => any;
+    returnResultAlways:boolean;
   }) {
     super(options, context);
     this.verifyDocumentType(options.mutation, DocumentType.Mutation);
     this.result = result;
     this.setResult = setResult;
     this.mostRecentMutationId = 0;
+    this.returnResultAlways = returnResultAlways;
   }
 
   public execute(result: MutationResult<TData>) {
@@ -151,7 +155,7 @@ export class MutationData<
     const callOncomplete = () =>
       onCompleted ? onCompleted(data as TData) : null;
 
-    if (this.isMostRecentMutation(mutationId) && !ignoreResults) {
+    if (this.returnResultAlways || this.isMostRecentMutation(mutationId) && !ignoreResults) {
       this.updateResult({
         called: true,
         loading: false,

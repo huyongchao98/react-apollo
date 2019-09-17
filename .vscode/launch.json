@@ -1,0 +1,26 @@
+{
+  // 使用 IntelliSense 了解相关属性。
+  // 悬停以查看现有属性的描述。
+  // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Jest all File",
+      // 启动路径，启动jest，因为react在根目录下装了jest，在各个packages的并没有，所以必须放在根目录下面。
+      "program": "${workspaceRoot}/node_modules/jest/bin/jest",
+      // 参数，copy的react的debug-test的参数
+      "args": [
+        "--config",
+        "./config/jest.config.js",
+        "--runInBand"
+      ],
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "env": {
+        "NODE_ENV": "development"
+      }
+    }
+  ]
+}

@@ -12,6 +12,7 @@ export function useMutation<TData = any, TVariables = OperationVariables>(
   const context = useContext(getApolloContext());
   const [result, setResult] = useState({ called: false, loading: false });
   const updatedOptions = options ? { ...options, mutation } : { mutation };
+  const returnResultAlways = options && options.returnResultAlways  ? options.returnResultAlways : false;
 
   const mutationDataRef = useRef<MutationData<TData, TVariables>>();
   function getMutationDataRef() {
@@ -20,7 +21,8 @@ export function useMutation<TData = any, TVariables = OperationVariables>(
         options: updatedOptions,
         context,
         result,
-        setResult
+        setResult,
+        returnResultAlways
       });
     }
     return mutationDataRef.current;
